@@ -20,6 +20,30 @@ const removeTodo = (i: number) => {
 };
 </script>
 
-<template></template>
+<template>
+  <form @submit.prevent="addTodo">
+    <input type="text" placeholder="Add todo here" v-model="userInput" />
+  </form>
 
-<style scoped></style>
+  <ul>
+    <li
+      v-for="(todo, index) in todos"
+      :key="index"
+      class="todo"
+      :class="todo.done ? 'done' : ''"
+    >
+      {{ todo.text }}
+      <button @click="toggleTodoDone(index)">Toggle</button>
+      <button @click="removeTodo(index)">Remove</button>
+    </li>
+  </ul>
+</template>
+
+<style scoped>
+.todo {
+}
+
+.todo.done {
+  text-decoration: line-through;
+}
+</style>
